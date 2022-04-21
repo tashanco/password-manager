@@ -5,3 +5,17 @@ body {
     font-size: 14px;
     width: 100%;
 }
+
+form {
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 50vw;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 50vw;
+}

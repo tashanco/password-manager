@@ -24,6 +24,7 @@
                 <th>Website</th>
                 <th>Actions</th>
             </tr>
+        {% for password in password %}
             <tr>
                 <td>{{ password.username }}</td>
                 <td>{{ password.password }}</td>
@@ -34,7 +35,7 @@
                     <a href="/update/{{password.id}}">Update</a>
                 </td>
             </tr>
-
+        {% endfor %}
         </table>
 </div>
 {% endblock %}

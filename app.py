@@ -27,8 +27,7 @@ def index():
             db.session.commit()
             return redirect('/')
         except:
-            return 'There was an issue with adding your password'
-    
+            return 'There was an issue with adding your password'   
     else:
         passwords = Password.query.order_by(Password.id).all()
         return render_template('index.html', passwords=passwords)
@@ -45,5 +44,23 @@ def delete(id):
     except:
         return 'There was an issue deleting your password'
 
+## Update Route
+@app.route('/update/int:id', methods=['GET', 'POST'])
+def update(id):
+    password = Password.query.get_or_404(id)
+    if request.method == 'POST':
+        password_to_update = Password.query.get_or_404(id)
+
+        password_to_update.username = request.form['name']
+        password_to_update.password = request.form['password']
+
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            return 'There was an issue updating your password'
+    else:
+        return render_template('update.html', password=password)
+        
 if __name__ == '__main__':
     app.run(debug=True)

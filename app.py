@@ -29,7 +29,7 @@ def index():
         except:
             return 'There was an issue with adding your password'   
     else:
-        passwords = Password.query.order_by(Password.id).all()
+        password = Password.query.order_by(Password.id).all()
         return render_template('index.html', password=password)
 
 ## Delete Route

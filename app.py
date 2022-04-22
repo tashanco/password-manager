@@ -30,7 +30,7 @@ def index():
             return 'There was an issue with adding your password'   
     else:
         passwords = Password.query.order_by(Password.id).all()
-        return render_template('index.html', passwords=passwords)
+        return render_template('index.html', password=password)
 
 ## Delete Route
 @app.route('/delete/int:id', methods=['GET', 'POST'])
@@ -61,6 +61,6 @@ def update(id):
             return 'There was an issue updating your password'
     else:
         return render_template('update.html', password=password)
-        
+
 if __name__ == '__main__':
     app.run(debug=True)

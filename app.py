@@ -18,7 +18,7 @@ class Password(db.Model):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        username = request.form['name']
+        username = request.form['username']
         password = request.form['password']
 
         new_password = Password(username=username, password=password)
@@ -29,8 +29,8 @@ def index():
         except:
             return 'There was an issue with adding your password'   
     else:
-        password = Password.query.order_by(Password.id).all()
-        return render_template('index.html', password=password)
+        passwords = Password.query.order_by(Password.id).all()
+        return render_template('index.html', passwords=passwords)
 
 ## Delete Route
 @app.route('/delete/int:id', methods=['GET', 'POST'])
@@ -51,7 +51,7 @@ def update(id):
     if request.method == 'POST':
         password_to_update = Password.query.get_or_404(id)
 
-        password_to_update.username = request.form['name']
+        password_to_update.username = request.form['username']
         password_to_update.password = request.form['password']
 
         try:

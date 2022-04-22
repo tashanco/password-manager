@@ -33,5 +33,18 @@ def index():
         passwords = Password.query.order_by(Password.id).all()
         return render_template('index.html', passwords=passwords)
 
+## Delete Route
+@app.route('/delete/int:id', methods=['GET', 'POST'])
+def delete(id):
+    password_to_delete = Password.query.get_or_404(id)
+
+    try:
+        db.session.delete(password_to_delete)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return 'There was an issue deleting your password'
+
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -27,8 +27,8 @@
         {% for password in passwords %}
             <tr>
                 <td>{{ password.username }}</td>
+                <td>{{ password.website.name }}</td>
                 <td>{{ password.password }}</td>
-                <td></td>
                 <td>
                     <a href="/delete/{{password.id}}">Delete</a>
                     <br>

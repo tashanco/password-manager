@@ -39,7 +39,16 @@ def manager():
         username = request.form['username']
         password = request.form['password']
 
-        new_password = Password(username=username, password=password)
+        website = Website.query.filter_by(name=url).first()
+        if website is None:
+            try:
+                website = Website(name=url)
+                db.session.add(website)
+                db.session.commit()
+            except:
+                return 'There was an issue adding the website'
+
+        new_password = Password(username=username, password=password, website=website, website_id=website.id)
         try:
             db.session.add(new_password)
             db.session.commit()

@@ -12,6 +12,7 @@ class Password(db.Model):
     username = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), unique=True, nullable=False)
     website_id = db.Column(db.Integer, db.ForeignKey('website.id'), nullable=False)
+    website = db.relationship('Website', backref=db.backref('password', lazy=True))
     
     def __repr__(self):
         return '<Password %r>' % self.id
@@ -27,6 +28,14 @@ class Website(db.Model):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
+        return render_template('index.html')  
+    else:
+        return render_template('index.html')
+
+## Manager Page Route
+@app.route('/manager', methods=['GET', 'POST'])
+def manager():
+    if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
@@ -34,12 +43,12 @@ def index():
         try:
             db.session.add(new_password)
             db.session.commit()
-            return redirect('/')
+            return redirect('/manager')
         except:
             return 'There was an issue with adding your password'   
     else:
         passwords = Password.query.order_by(Password.id).all()
-        return render_template('index.html', passwords=passwords)
+        return render_template('manager.html', passwords=passwords)
 
 ## Delete Route
 @app.route('/delete/<int:id>', methods=['GET', 'POST'])
@@ -49,7 +58,7 @@ def delete(id):
     try:
         db.session.delete(password_to_delete)
         db.session.commit()
-        return redirect('/')
+        return redirect('/manager')
     except:
         return 'There was an issue deleting your password'
 
@@ -65,7 +74,7 @@ def update(id):
 
         try:
             db.session.commit()
-            return redirect('/')
+            return redirect('/manager')
         except:
             return 'There was an issue updating your password'
     else:

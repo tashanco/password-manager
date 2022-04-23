@@ -1,41 +1,12 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>Tashan's Password Manager</title>
+    <title>Tashan's Password Generator</title>
 {% endblock %}
 
 {% block body %}
-<div class="content">
-    <h1>Tashan's Password Manager</h1>
-
-        <!-- Form for new passwords -->
-        <form class="new-password-form" action="/" method="POST">
-            <input type="text" name="username" id="username" placeholder="Username">
-            <input type="text" name="url" id="url" placeholder="URL">
-            <input type="password" name="password" id="password" placeholder="Password"> 
-            <input type="submit" value="Save password">
-        </form>
-        <br>
-        <!-- Table for stored passwords -->
-        <table class="password-table">
-            <tr>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Website</th>
-                <th>Actions</th>
-            </tr>
-        {% for password in passwords %}
-            <tr>
-                <td>{{ password.username }}</td>
-                <td>{{ password.password }}</td>
-                <td></td>
-                <td>
-                    <a href="/delete/{{password.id}}">Delete</a>
-                    <br>
-                    <a href="/update/{{password.id}}">Update</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </table>
+<div>
+    <h1>Tashan's Password Generator</h1>
+    <button><a href="/manager">Manage Passwords</a></button>
 </div>
 {% endblock %}

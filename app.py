@@ -80,5 +80,14 @@ def update(id):
     else:
         return render_template('update.html', password=password)
 
+## Get Password Route
+@app.route('/get-a-new-password', methods=['GET'])
+def generate():
+    try:
+        password = generate_password()
+        return jsonify({'password': password})
+    except:
+        return 'There was a problem generating a password'
+
 if __name__ == '__main__':
     app.run(debug=True)

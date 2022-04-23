@@ -33,7 +33,7 @@ def index():
         return render_template('index.html', passwords=passwords)
 
 ## Delete Route
-@app.route('/delete/int:id', methods=['GET', 'POST'])
+@app.route('/delete/<int:id>', methods=['GET', 'POST'])
 def delete(id):
     password_to_delete = Password.query.get_or_404(id)
 
@@ -45,7 +45,7 @@ def delete(id):
         return 'There was an issue deleting your password'
 
 ## Update Route
-@app.route('/update/int:id', methods=['GET', 'POST'])
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
     password = Password.query.get_or_404(id)
     if request.method == 'POST':

@@ -81,6 +81,7 @@ def update(id):
 
         password_to_update.username = request.form['username']
         password_to_update.password = request.form['password']
+        password_to_update.url = request.form['url']
 
         try:
             db.session.commit()

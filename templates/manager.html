@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block body %}
-<div class="content">
+<div>
     <h1>Tashan's Password Manager</h1>
 
         <!-- Form for new passwords -->
-        <form class="new-password-form" action="/" method="POST">
+        <form action="/" method="POST">
             <input type="text" name="username" id="username" placeholder="Username">
             <input type="text" name="url" id="url" placeholder="URL">
             <input type="password" name="password" id="password" placeholder="Password"> 
@@ -17,7 +17,7 @@
         </form>
         <br>
         <!-- Table for stored passwords -->
-        <table class="password-table">
+        <table>
             <tr>
                 <th>Username</th>
                 <th>Password</th>

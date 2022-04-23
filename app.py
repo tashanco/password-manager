@@ -38,6 +38,7 @@ def manager():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        url = request.form['url']
 
         website = Website.query.filter_by(name=url).first()
         if website is None:
